@@ -1,0 +1,10 @@
+sample services sederhana
+- login jwt
+- db query gorm
+- database mysql
+- info sesi token di file config go terdapat token_duration itu adalah per menit token_secret boleh di ganti bebas
+
+github delelopment
+https://github.com/adimaryadi/fast-project-golang.git
+
+Template ini semoga bermamfaat bagi pemula
