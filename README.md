@@ -4,11 +4,9 @@ sample services sederhana
 - login jwt
 - db query gorm
 - database mysql
+- database postgres
 - info sesi token di file config go terdapat token_duration itu adalah per menit token_secret boleh di ganti bebas 
 
-- Database
-  Postgres
-  Mysql
 
 Template ini semoga bermamfaat bagi pemula
 
