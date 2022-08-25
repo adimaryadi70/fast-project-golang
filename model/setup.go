@@ -5,14 +5,11 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jinzhu/gorm"
 	_ "github.com/lib/pq"
-	"log"
 	"os"
 )
 
 func SetupDB() *gorm.DB {
 	DB := os.Getenv("DB")
-	log.Print(DB)
-
 	USER := os.Getenv("user")
 	PASS := os.Getenv("pass")
 	HOST := os.Getenv("host")
