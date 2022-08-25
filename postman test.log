@@ -1,13 +1,24 @@
 {
 	"info": {
-		"_postman_id": "ade97426-dd06-475f-b9d2-010ea54bded2",
+		"_postman_id": "2d3750e1-0f35-4240-a4cb-ccbd93ba8d25",
 		"name": "Tester Crud",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21096973"
 	},
 	"item": [
 		{
 			"name": "add",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2NTcyODcwMTgsInVzZXJfaWQiOjF9.TyRh5cQ1Yjg6gpgzjICtUrCciEHc3MqLYzI52KqvspI",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [],
 				"body": {
@@ -20,11 +31,11 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8080/transaction/create",
+					"raw": "{{server}}:{{port}}{{path}}/transaction/create",
 					"host": [
-						"localhost"
+						"{{server}}"
 					],
-					"port": "8080",
+					"port": "{{port}}{{path}}",
 					"path": [
 						"transaction",
 						"create"
@@ -76,11 +87,11 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8080/transaction/11",
+					"raw": "{{server}}:{{port}}{{path}}/transaction/11",
 					"host": [
-						"localhost"
+						"{{server}}"
 					],
-					"port": "8080",
+					"port": "{{port}}{{path}}",
 					"path": [
 						"transaction",
 						"11"
@@ -179,13 +190,12 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8080/api/authentication",
+					"raw": "{{server}}:{{port}}{{path}}/authentication",
 					"host": [
-						"localhost"
+						"{{server}}"
 					],
-					"port": "8080",
+					"port": "{{port}}{{path}}",
 					"path": [
-						"api",
 						"authentication"
 					]
 				}
