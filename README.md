@@ -18,3 +18,8 @@ KODE RC response
 KODE 00 suksess
 KODE 08 Gagal
 KODE 01 Unauthorize
+
+generate Proto GRPC
+protoc --proto_path=D:\DATA\Backend\fast-project-golang\common\proto D:\DATA\Backend\fast-project-golang\common\proto\transaction\transaction.proto --go-grpc_ou
+t=./proto/transaction
+
