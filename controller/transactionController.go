@@ -7,15 +7,24 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/jinzhu/gorm"
 	"github.com/vigneshuvi/GoDateFormat"
+	"strconv"
 	"time"
 )
 
 func FindTransaction(c *gin.Context) {
 	db  := c.MustGet("db").(*gorm.DB)
 	var FindTransaction []model.Transaction
-	db.Find(&FindTransaction)
+	urlQuery := c.Request.URL.Query()
+	totalRows := db.Find(&FindTransaction).RowsAffected
+	paging := db.Scopes(tools.Paging(c.Request)).Find(&FindTransaction)
+	result := model.PagingModel{
+		Page: urlQuery.Get("page"),
+		PageSize: urlQuery.Get("page_size"),
+		TotalRows: strconv.Itoa(int(totalRows)),
+		Data: paging.Value,
+	}
 	//c.JSON(http.StatusOK, gin.H{})
-	tools.ResSuccess(c,FindTransaction)
+	tools.ResSuccess(c,result)
 }
 
 func CreateTransaction(c *gin.Context) {
