@@ -96,6 +96,7 @@ func TokenValid(c *gin.Context) error {
 	return nil
 }
 
+
 func AES256Encrypt(key, src string) (string, error) {
 	block, err := aes.NewCipher(getPaddedKey(key, 256))
 	log.Print("padding ", block)
@@ -209,7 +210,6 @@ func GetToken(tokenStr string) string {
 }
 
 func ExtractTokenID(c *gin.Context) (uint, error) {
-
 	tokenString := ExtractToken(c)
 	token, err := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
 		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {

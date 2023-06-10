@@ -1,6 +1,7 @@
 package controller
 
 import (
+	"errors"
 	"fast-project-golang/model"
 	"fast-project-golang/tools"
 	"github.com/gin-gonic/gin"
@@ -57,6 +58,18 @@ func MiddlewareAuth(c *gin.Context) {
 	userInfo := &model.UsersInfo{Token: token, Data: input}
 	tools.ResSuccess(c, userInfo)
 	//c.JSON(http.StatusOK, gin.H{"code": "00","message": token})
+}
+
+func QueryCheckSession(c *gin.Context) bool {
+	token, _ := tools.ExtractTokenID(c)
+	var session model.SessionToken
+	session.UserId = token
+	db := c.MustGet("db").(*gorm.DB)
+	result := db.Find(&session)
+	if errors.Is(result.Error, gorm.ErrRecordNotFound) {
+		return false
+	}
+	return true
 }
 
 func RegisterAuth(c *gin.Context) {
