@@ -4,7 +4,6 @@ import (
 	"errors"
 	"fast-project-golang/model"
 	"fast-project-golang/tools"
-	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/jinzhu/gorm"
 	"log"
@@ -63,12 +62,10 @@ func MiddlewareAuth(c *gin.Context) {
 
 func QueryCheckSession(c *gin.Context) bool {
 	token, _ := tools.ExtractTokenID(c)
-	fmt.Print(token)
 	var session model.SessionToken
 	session.UserId = token
 	db := c.MustGet("db").(*gorm.DB)
 	result := db.Where("user_id = ?", token).First(&session).Error;
-	fmt.Println("result ", result)
 	if errors.Is(result, gorm.ErrRecordNotFound) {
 		return false
 	}

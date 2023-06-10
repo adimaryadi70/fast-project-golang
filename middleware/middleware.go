@@ -3,7 +3,6 @@ package middleware
 import (
 	"fast-project-golang/controller"
 	"fast-project-golang/tools"
-	"fmt"
 	"github.com/gin-gonic/gin"
 )
 
@@ -11,7 +10,6 @@ func JwtAuthMiddleware() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		err        := tools.TokenValid(c)
 		check      := controller.QueryCheckSession(c)
-		fmt.Println(check)
 		if !check {
 			tools.ResAll(c,"","01","Unauthorized")
 			c.Abort()
