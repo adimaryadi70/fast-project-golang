@@ -1,9 +1,8 @@
 {
 	"info": {
-		"_postman_id": "2d3750e1-0f35-4240-a4cb-ccbd93ba8d25",
+		"_postman_id": "1238d3ea-52d6-4e6e-ab95-e1b296eaf8bc",
 		"name": "Tester Crud",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "21096973"
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
 		{
@@ -11,13 +10,9 @@
 			"request": {
 				"auth": {
 					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2NTcyODcwMTgsInVzZXJfaWQiOjF9.TyRh5cQ1Yjg6gpgzjICtUrCciEHc3MqLYzI52KqvspI",
-							"type": "string"
-						}
-					]
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2NTcyODcwMTgsInVzZXJfaWQiOjF9.TyRh5cQ1Yjg6gpgzjICtUrCciEHc3MqLYzI52KqvspI"
+					}
 				},
 				"method": "POST",
 				"header": [],
@@ -30,17 +25,7 @@
 						}
 					}
 				},
-				"url": {
-					"raw": "{{server}}:{{port}}{{path}}/transaction/create",
-					"host": [
-						"{{server}}"
-					],
-					"port": "{{port}}{{path}}",
-					"path": [
-						"transaction",
-						"create"
-					]
-				}
+				"url": "{{server}}:{{port}}{{path}}/transaction/create"
 			},
 			"response": []
 		},
@@ -58,17 +43,7 @@
 						}
 					}
 				},
-				"url": {
-					"raw": "localhost:8080/transaction/13",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"transaction",
-						"13"
-					]
-				}
+				"url": "localhost:8080/transaction/13"
 			},
 			"response": []
 		},
@@ -86,17 +61,7 @@
 						}
 					}
 				},
-				"url": {
-					"raw": "{{server}}:{{port}}{{path}}/transaction/11",
-					"host": [
-						"{{server}}"
-					],
-					"port": "{{port}}{{path}}",
-					"path": [
-						"transaction",
-						"11"
-					]
-				}
+				"url": "{{server}}:{{port}}{{path}}/transaction/11"
 			},
 			"response": []
 		},
@@ -108,20 +73,17 @@
 			"request": {
 				"auth": {
 					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2MzY1Njk3MDYsInVzZXJfaWQiOjV9.uPEBZxjTXYnePdn4rpUSbr-yugB-6dAGSHu7SNRQFMg",
-							"type": "string"
-						}
-					]
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2ODY1MDk5ODMsInVzZXJfaWQiOjF9.hg-q4FvOh-IVlume6nzVAOQVzfe4V6OoUWootw5HwZw"
+					}
 				},
 				"method": "GET",
 				"header": [
 					{
 						"key": "",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2MzY1Njk3MDYsInVzZXJfaWQiOjV9.uPEBZxjTXYnePdn4rpUSbr-yugB-6dAGSHu7SNRQFMg",
-						"type": "text"
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2ODY0OTgzODIsInVzZXJfaWQiOjF9._dTPBhRc-Y8FSB-mrgaotNyy9nHgg2QJB9i-1rmEjdM",
+						"type": "text",
+						"disabled": true
 					}
 				],
 				"body": {
@@ -134,14 +96,23 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8080/api/transaction",
+					"raw": "{{server}}:{{port}}{{path}}/transaction?page=1&page_size=2",
 					"host": [
-						"localhost"
+						"{{server}}"
 					],
-					"port": "8080",
+					"port": "{{port}}{{path}}",
 					"path": [
-						"api",
 						"transaction"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "page_size",
+							"value": "2"
+						}
 					]
 				}
 			},
@@ -161,17 +132,7 @@
 						}
 					}
 				},
-				"url": {
-					"raw": "localhost:8080/api/register",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"register"
-					]
-				}
+				"url": "{{server}}:{{port}}{{path}}/register"
 			},
 			"response": []
 		},
@@ -189,16 +150,7 @@
 						}
 					}
 				},
-				"url": {
-					"raw": "{{server}}:{{port}}{{path}}/authentication",
-					"host": [
-						"{{server}}"
-					],
-					"port": "{{port}}{{path}}",
-					"path": [
-						"authentication"
-					]
-				}
+				"url": "{{server}}:{{port}}{{path}}/authentication"
 			},
 			"response": []
 		}
