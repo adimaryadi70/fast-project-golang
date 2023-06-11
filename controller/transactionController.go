@@ -17,12 +17,15 @@ func FindTransaction(c *gin.Context) {
 	urlQuery := c.Request.URL.Query()
 	totalRows := db.Find(&FindTransaction).RowsAffected
 	pageSize := urlQuery.Get("page_size")
-	fmt.Println(pageSize)
+	toIntPageSize, _ := strconv.Atoi(pageSize)
+	toIntTotalRows := int(totalRows)
+	totalPages := toIntTotalRows / toIntPageSize
 	paging := db.Scopes(tools.Paging(c.Request)).Find(&FindTransaction)
+	totalPages = totalPages + 1
 	result := model.PagingModel{
 		Page: urlQuery.Get("page"),
 		PageSize: urlQuery.Get("page_size"),
-		TotalRows: strconv.Itoa(int(totalRows)),
+		TotalPages: strconv.Itoa(int(totalPages)),
 		Data: paging.Value,
 	}
 	//c.JSON(http.StatusOK, gin.H{})
