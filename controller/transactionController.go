@@ -16,6 +16,8 @@ func FindTransaction(c *gin.Context) {
 	var FindTransaction []model.Transaction
 	urlQuery := c.Request.URL.Query()
 	totalRows := db.Find(&FindTransaction).RowsAffected
+	pageSize := urlQuery.Get("page_size")
+	fmt.Println(pageSize)
 	paging := db.Scopes(tools.Paging(c.Request)).Find(&FindTransaction)
 	result := model.PagingModel{
 		Page: urlQuery.Get("page"),

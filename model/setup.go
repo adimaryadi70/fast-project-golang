@@ -24,8 +24,9 @@ func SetupDB() *gorm.DB {
 		return db
 	}
 	if DB == "postgres" {
-		URL := fmt.Sprintf("postgres://%s:%s@%s/%s?sslmode=disable", USER, PASS, HOST, DBNAME)
-		db, err := gorm.Open(DB, URL)
+		//URL := fmt.Sprintf("postgres://%s:%s@%s/%s?sslmode=disable", USER, PASS, HOST, DBNAME)
+		//db, err := gorm.Open(DB, URL)
+		db, err := gorm.Open("postgres", "host="+HOST+" port="+PORT+" user="+USER+" dbname="+DBNAME+" password="+PASS+" sslmode=disable")
 		if err != nil {
 			panic(err.Error())
 		}
