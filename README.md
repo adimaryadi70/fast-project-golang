@@ -20,6 +20,6 @@ KODE 08 Gagal
 KODE 01 Unauthorize
 
 generate Proto GRPC
-protoc --proto_path=D:\DATA\Backend\fast-project-golang\common\proto D:\DATA\Backend\fast-project-golang\common\proto\transaction\transaction.proto --go-grpc_ou
-t=./proto/transaction
+protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative common\proto\transaction\transaction.proto
+
 

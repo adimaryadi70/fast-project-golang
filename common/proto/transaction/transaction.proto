@@ -1,4 +1,6 @@
 syntax = "proto3";
+package proto;
+option go_package = "github.com/adimaryadi70/fast-project-golang/tree/master/common/proto";
 // The greeting service definition.
 service Greeter {
   // Sends a greeting

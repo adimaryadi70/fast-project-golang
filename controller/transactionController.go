@@ -24,18 +24,16 @@ func FindTransaction(c *gin.Context) {
 	totalPages = totalPages + 1
 	result := model.PagingModel{
 		Page: urlQuery.Get("page"),
-		PageSize: urlQuery.Get("page_size"),
+		PageSize: pageSize,
 		TotalPages: strconv.Itoa(int(totalPages)),
 		Data: paging.Value,
 	}
-	//c.JSON(http.StatusOK, gin.H{})
 	tools.ResSuccess(c,result)
 }
 
 func CreateTransaction(c *gin.Context) {
 	var input model.Transaction
 	if err := c.ShouldBindJSON(&input); err != nil {
-		//c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		tools.ResError(c, input,"Gagal Transaksi")
 	}
 	fmt.Println(input.Po_number)
