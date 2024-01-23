@@ -6,20 +6,24 @@ import (
 	"crypto/cipher"
 	"crypto/hmac"
 	"crypto/sha256"
+	"crypto/sha512"
 	"encoding/base64"
 	"encoding/hex"
+	"encoding/json"
 	"errors"
+	"fast-project-golang/model"
 	"fmt"
-	"github.com/Luzifer/go-openssl"
-	"github.com/dgrijalva/jwt-go"
-	"github.com/gin-gonic/gin"
-	"github.com/jinzhu/gorm"
 	"log"
 	"net/http"
 	"os"
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/Luzifer/go-openssl"
+	"github.com/dgrijalva/jwt-go"
+	"github.com/gin-gonic/gin"
+	"github.com/jinzhu/gorm"
 )
 
 func GetToday(format string) (todayString string) {
@@ -97,10 +101,8 @@ func TokenValid(c *gin.Context) error {
 	return nil
 }
 
-
 func AES256Encrypt(key, src string) (string, error) {
 	block, err := aes.NewCipher(getPaddedKey(key, 256))
-	log.Print("padding ", block)
 	if err != nil {
 		return "", err
 	}
@@ -120,9 +122,6 @@ func AES256Decrypt(key, crypt string) (string, error) {
 	block, err := aes.NewCipher(getPaddedKey(key, 256))
 	if err != nil {
 		return "", err
-	}
-	if len(crypt) == 0 {
-		return "", errors.New("plain content empty")
 	}
 	dcrypt, err := hex.DecodeString(crypt)
 	if err != nil {
@@ -282,4 +281,52 @@ func Paging(r *http.Request) func(db *gorm.DB) *gorm.DB {
 		offset := (page - 1) * pageSize
 		return db.Offset(offset).Limit(pageSize)
 	}
+}
+
+func CreateSignatureInquiry(payload *model.PayloadInquiry, key string) (string, error) {
+	// Convert the payload to JSON
+	payloadJSON, err := json.Marshal(payload)
+	if err != nil {
+		return "", err
+	}
+	// Create the HMAC-SHA512 signature
+	h := hmac.New(sha512.New, []byte(key))
+	h.Write(payloadJSON)
+	signature := fmt.Sprintf("%x", h.Sum(nil))
+	// Return the signature as a hexadecimal string
+	return signature, nil
+}
+
+func CreateSignatureFlagging(payload *model.PayloadFlagging, key string) (string, error) {
+	// Convert the payload to JSON
+	payloadJSON, err := json.Marshal(payload)
+	if err != nil {
+		return "", err
+	}
+	// Create the HMAC-SHA512 signature
+	h := hmac.New(sha512.New, []byte(key))
+	h.Write(payloadJSON)
+	signature := fmt.Sprintf("%x", h.Sum(nil))
+	// Return the signature as a hexadecimal string
+	return signature, nil
+}
+
+func GenerateTokenBRILINK() {
+	signatureKey := ""
+	transactionID := "66f2bd8d-8ab9-41c4-aeae-b3218ae33f05"
+	token := "d051e189e088aae4c8b37b34864b85ec"
+	amount := float64(200000)
+	signatureINQ, _ := CreateSignatureInquiry(&model.PayloadInquiry{
+		KodeAgen:      "test123",
+		Token:         token,
+		TransactionId: transactionID,
+	}, signatureKey)
+	fmt.Println("signature INQUIRY : " + signatureINQ)
+	signatureFLG, _ := CreateSignatureFlagging(&model.PayloadFlagging{
+		Amount:        amount,
+		Status:        "success",
+		Token:         token,
+		TransactionId: transactionID,
+	}, signatureKey)
+	fmt.Println("signature FLAGGING : " + signatureFLG)
 }

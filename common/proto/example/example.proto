@@ -1,0 +1,15 @@
+syntax = "proto3";
+package proto;
+option go_package = "github.com/adimaryadi70/fast-project-golang/tree/master/common/proto";
+
+service MyService {
+  rpc MyMethod(MyRequest) returns (MyResponse);
+}
+
+message MyRequest {
+  string data = 1;
+}
+
+message MyResponse {
+  string result = 1;
+}

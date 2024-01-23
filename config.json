@@ -1,0 +1,11 @@
+{
+    "TYPE_DATABASE": "postgres",
+    "TOKEN_JWT_DURATION": "2000",
+    "TOKEN_SECRET": "adi",
+    "PORT": "8989",
+    "HOST_DATABASE": "43.240.225.206",
+    "USER_DATABASE": "hiksdi",
+    "PASSWORD_DATABASE": "hiksdi2022#",
+    "PORT_DATABASE": "5432",
+    "DATABASE": "postgres"
+}
