@@ -4,7 +4,7 @@
 // - protoc             v3.9.1
 // source: common/proto/example.proto
 
-package proto
+package example
 
 import (
 	context "context"
@@ -35,7 +35,7 @@ func NewMyServiceClient(cc grpc.ClientConnInterface) MyServiceClient {
 
 func (c *myServiceClient) MyMethod(ctx context.Context, in *MyRequest, opts ...grpc.CallOption) (*MyResponse, error) {
 	out := new(MyResponse)
-	err := c.cc.Invoke(ctx, "/proto.MyService/MyMethod", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/example.MyService/MyMethod", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -80,7 +80,7 @@ func _MyService_MyMethod_Handler(srv interface{}, ctx context.Context, dec func(
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/proto.MyService/MyMethod",
+		FullMethod: "/example.MyService/MyMethod",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(MyServiceServer).MyMethod(ctx, req.(*MyRequest))
@@ -92,7 +92,7 @@ func _MyService_MyMethod_Handler(srv interface{}, ctx context.Context, dec func(
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var MyService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "proto.MyService",
+	ServiceName: "example.MyService",
 	HandlerType: (*MyServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

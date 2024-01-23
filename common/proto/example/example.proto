@@ -1,6 +1,6 @@
 syntax = "proto3";
-package proto;
-option go_package = "github.com/adimaryadi70/fast-project-golang/common/proto";
+package example;
+option go_package = "github.com/adimaryadi70/fast-project-golang/common/proto/example";
 service MyService {
   rpc MyMethod(MyRequest) returns (MyResponse);
 }
